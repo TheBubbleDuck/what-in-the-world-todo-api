@@ -1,7 +1,7 @@
 import koa     from 'koa';
 import router  from 'koa-route';
 import json    from 'koa-json';
-
+const PORT = process.env.PORT || 3000;
 const app = koa();
 
 //  Middleware
@@ -34,4 +34,4 @@ app.use(
   router.get('/todos', todos.list)
 );
 
-app.listen(3000);
+app.listen(PORT);
