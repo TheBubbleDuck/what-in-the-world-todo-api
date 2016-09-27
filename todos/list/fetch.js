@@ -1,6 +1,10 @@
+import TodoModel from '../model';
 /**
  * Fetch a list of todo items
  */
 export default function *fetch() {
-  this.body = {message: 'Success'};
+  const TodoList = yield TodoModel.find({});
+  this.body = TodoList;
 }
+
+//TODO: Refactor to possibly use a projection
