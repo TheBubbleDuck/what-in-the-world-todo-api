@@ -1,14 +1,18 @@
 import mongoose from 'mongoose';
 import bluebird from 'bluebird';
+import fs       from 'fs';
 
-//  Setup mongoose promise lib
-mongoose.Promise = bluebird;
-
-//  Custom Imports
-import APP_CONFIG from '../server-config/config.json';
-
+const SERVER_CONFIG_PATH = process.env.SERVER_CONFIG_PATH || '../server-config/config.json';
+let APP_CONFIG;
 let MONGO_CONNECTION;
 
+//TODO: Makes this check more global and provide global config
+try {
+  fs.accessSync(SERVER_CONFIG_PATH);
+  APP_CONFIG = require(SERVER_CONFIG_PATH);
+} catch (e) {
+  console.log('There is no configuration file. Continuing priority checks');
+}
 //  Check the configuration for different options
 const { MONGO_DB_CONNECTION } = process.env;
 
@@ -20,7 +24,12 @@ if (MONGO_DB_CONNECTION) {
 } else {
   MONGO_CONNECTION = 'mongodb://localhost/witwt-api'; //  Default Local Mongo
 }
-console.log(MONGO_CONNECTION);
+
+//  Setup mongoose promise lib
+mongoose.Promise = bluebird;
+
+//  Setup Mongoose
+console.log('Connection for Mongo: ', MONGO_CONNECTION);
 mongoose.connect(MONGO_CONNECTION);
 
 //  Handle connection event
