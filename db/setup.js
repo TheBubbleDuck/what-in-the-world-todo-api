@@ -10,10 +10,15 @@ import APP_CONFIG from '../server-config/config.json';
 let MONGO_CONNECTION;
 
 //  Check the configuration for different options
-if (APP_CONFIG) {
-  MONGO_CONNECTION = APP_CONFIG.mongo.connection_url;
+const { MONGO_DB_CONNECTION } = process.env;
+
+//  Check for Connection by priority
+if (MONGO_DB_CONNECTION) {
+  MONGO_CONNECTION = MONGO_DB_CONNECTION;             // Overridden Mongo Connection
+} else if (APP_CONFIG) {
+  MONGO_CONNECTION = APP_CONFIG.mongo.connection_url; //  Local App Config
 } else {
-  MONGO_CONNECTION = process.env.MONGO_DB_CONNECTION || 'mongodb://localhost/witwt-api';
+  MONGO_CONNECTION = 'mongodb://localhost/witwt-api'; //  Default Local Mongo
 }
 console.log(MONGO_CONNECTION);
 mongoose.connect(MONGO_CONNECTION);
