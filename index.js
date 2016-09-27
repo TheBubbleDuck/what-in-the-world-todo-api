@@ -3,6 +3,7 @@ import json    from 'koa-json';
 
 //  Custom Imports
 import api     from './api';
+import './db/setup';
 
 //  Setup Base
 const PORT = process.env.PORT || 3000;
