@@ -1,6 +1,6 @@
-import koa     from 'koa';
-import json    from 'koa-json';
-
+import koa    from 'koa';
+import json   from 'koa-json';
+import parser from 'koa-bodyparser';
 //  Custom Imports
 import api     from './api';
 import './db/setup';
@@ -10,6 +10,7 @@ const PORT = process.env.PORT || 3000;
 const app = koa();
 
 //  Middleware
+app.use(parser());
 app.use(json());
 app.use(api.routes());
 
