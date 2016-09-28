@@ -1,6 +1,6 @@
 import kRouter from 'koa-router';
 
-import todos  from './todos/api';
+import todos  from './src/todos/api';
 
 const router = new kRouter();
 
