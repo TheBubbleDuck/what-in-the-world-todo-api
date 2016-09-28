@@ -2,7 +2,7 @@ import sinon from 'sinon';
 import mock from 'proxyquire';
 mock.noCallThru();
 
-describe('(handler) fetch', function () {
+describe('(handler) LIST fetch', function () {
   let fetch, modelStub;
   beforeEach(function () {
     modelStub = {
