@@ -1,4 +1,4 @@
 {
   "presets": ["es2015", "stage-2"],
-  "plugins": ["transform-async-to-generator"]
+  "plugins": ["babel-polyfill", "transform-async-to-generator"]
 }

@@ -1,3 +1,5 @@
+//  Import polyfill for async/await
+
 import koa    from 'koa';
 import json   from 'koa-json';
 import parser from 'koa-bodyparser';
