@@ -15,6 +15,5 @@ export default function *fetch() {
   } else {
     this.body = Todo;
   }
-
 }
 //TODO: Add Error Handling
