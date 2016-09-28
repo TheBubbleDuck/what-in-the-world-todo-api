@@ -2,12 +2,13 @@ import mongoose from 'mongoose';
 import bluebird from 'bluebird';
 import fs       from 'fs';
 
-const SERVER_CONFIG_PATH = process.env.SERVER_CONFIG_PATH || '../server-config/config.json';
+const SERVER_CONFIG_PATH = process.env.SERVER_CONFIG_PATH || process.cwd() + '/server-config/config.json';
 let APP_CONFIG;
 let MONGO_CONNECTION;
 
 //TODO: Makes this check more global and provide global config
 try {
+  console.log('ser', SERVER_CONFIG_PATH);
   fs.accessSync(SERVER_CONFIG_PATH);
   APP_CONFIG = require(SERVER_CONFIG_PATH);
 } catch (e) {
