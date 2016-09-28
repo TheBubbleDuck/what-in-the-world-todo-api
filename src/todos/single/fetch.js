@@ -4,7 +4,7 @@ import TodoModel from '../model';
  */
 export default function *fetch() {
   const { id } = this.params;
-  const Todo = yield TodoModel.findOne({ id: id});
+  const Todo = yield TodoModel.findById(id);
 
   //  Handle a null doc
   if (!Todo) {
