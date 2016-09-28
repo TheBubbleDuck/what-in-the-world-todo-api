@@ -8,7 +8,11 @@ const TodoSchema = new Schema(tSchema, {
     transform: transformModel
   }
 });
-
-//  Create the mongoose Model
-const Todo = mongoose.model('Todo', TodoSchema);
+let Todo;
+try {
+  Todo = mongoose.model('Todo', TodoSchema);
+} catch (e) {
+  console.log('Model is already available');
+  Todo = mongoose.model('Todo');
+}
 export default Todo;
