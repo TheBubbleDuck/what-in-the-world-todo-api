@@ -1,6 +1,20 @@
+import TodoModel from '../model';
 /**
- * Fetch a list of todo items
+ * Fetch a single of todo items
  */
 export default function *fetch() {
-  this.body = {message: 'Success'};
+  const { id } = this.params;
+  const Todo = yield TodoModel.findOne({ id: id});
+
+  //  Handle a null doc
+  if (!Todo) {
+    this.status = 404;
+    this.body = {
+      message: 'Could not find the todo!'
+    };
+  } else {
+    this.body = Todo;
+  }
+
 }
+//TODO: Add Error Handling

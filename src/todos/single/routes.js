@@ -2,11 +2,11 @@ import kRouter  from 'koa-router';
 
 //  Route Handlers
 import fetch   from './fetch';
-import create  from './create';
+import update  from './update';
 
 const router = new kRouter();
 
 router.get('/', fetch);
-router.post('/', create);
+router.put('/', update);
 
 export default router;
